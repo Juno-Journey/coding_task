@@ -1,4 +1,4 @@
-export default interface Note {
+export  interface NoteType {
     _id: string;
     title: string;
     body: {
