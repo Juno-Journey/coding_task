@@ -26,8 +26,13 @@ const NoteEditor = ({ note, updateNote, toggleCheck }: NoteEditorProps) => {
   });
 
   const handleSaveNote = () => {
+    let updatedNote = {
+      ...note,
+      title: noteTitle,
+    };
+
     if (note.isCheckboxes) {
-      updateNote(note);
+      updateNote(updatedNote);
       return;
     }
 
@@ -36,11 +41,7 @@ const NoteEditor = ({ note, updateNote, toggleCheck }: NoteEditorProps) => {
       return { text, isChecked };
     });
 
-    const updatedNote = {
-      ...note,
-      title: noteTitle,
-      body: updatedBody,
-    };
+    updatedNote.body = updatedBody;
 
     updateNote(updatedNote);
   };
