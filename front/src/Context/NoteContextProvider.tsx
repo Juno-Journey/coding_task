@@ -77,8 +77,6 @@ export const NotesProvider = ({ children }: { children: React.ReactNode }) => {
     ({ id, note }: NoteMutationVariables) => Notes.upsertNote(id, note),
     {
       onMutate: async ({ id, note }) => {
-        console.log({ id, note });
-
         await queryClient.cancelQueries([NOTES_KEY, { search: searchTerm }]);
 
         const currentData = queryClient.getQueryData<{ pages: Note[][] }>([
@@ -90,8 +88,6 @@ export const NotesProvider = ({ children }: { children: React.ReactNode }) => {
           const updatedPages = currentData.pages.map((page) =>
             page.map((item) => (item._id === id ? { ...item, ...note } : item))
           );
-
-          console.log({ updatedPages });
 
           queryClient.setQueryData([NOTES_KEY, { search: searchTerm }], {
             ...currentData,

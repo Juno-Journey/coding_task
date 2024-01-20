@@ -21,14 +21,10 @@ const CreateNote = () => {
   const { upsertNote } = useNotes();
 
   const handleSubmit = (note: Note) => {
-    console.log({ note });
-
     let newNote = {
       ...note,
       _id: Date.now().toString(),
     };
-
-    console.log({ newNote });
 
     upsertNote({ id: newNote._id, note: newNote });
     setIsOpenNewNote(false);
