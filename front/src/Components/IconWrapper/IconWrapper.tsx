@@ -34,7 +34,10 @@ const IconWrapper = ({ onClick, type, fontSize, color, sx }: IconWrapperProps) =
       {IconComponent}
     </Button>
   ) : (
-    <Box className={`icon icon-${type}`} sx={{ display: 'flex', alignItems: 'center', ...sx }}>
+    <Box
+      className={`icon icon-${type}`}
+      sx={{ color: '#808080', display: 'flex', alignItems: 'center', ...sx }}
+    >
       {IconComponent}
     </Box>
   );
