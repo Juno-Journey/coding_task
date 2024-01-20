@@ -36,12 +36,16 @@ const NoteEditor = ({ note, updateNote, toggleCheck }: NoteEditorProps) => {
       return;
     }
 
-    const updatedBody = noteContent.split('\n').map((text) => {
-      const isChecked = false;
-      return { text, isChecked };
-    });
+    if (!noteContent) {
+      updatedNote.body = [];
+    } else {
+      const updatedBody = noteContent.split('\n').map((text) => {
+        const isChecked = false;
+        return { text, isChecked };
+      });
 
-    updatedNote.body = updatedBody;
+      updatedNote.body = updatedBody;
+    }
 
     updateNote(updatedNote);
   };

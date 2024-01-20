@@ -15,7 +15,6 @@ const NotePlaceholder = {
 };
 
 const CreateNote = () => {
-  const [note, setNote] = React.useState<Note>(NotePlaceholder);
   const [isOpenNewNote, setIsOpenNewNote] = React.useState(false);
 
   const { upsertNote } = useNotes();
@@ -26,7 +25,10 @@ const CreateNote = () => {
       _id: Date.now().toString(),
     };
 
-    upsertNote({ id: newNote._id, note: newNote });
+    if (newNote.title || newNote.body.length > 0) {
+      upsertNote({ id: newNote._id, note: newNote });
+    }
+
     setIsOpenNewNote(false);
   };
 
@@ -62,7 +64,7 @@ const CreateNote = () => {
         borderRadius: 2,
       }}
     >
-      <NoteEditor note={note} updateNote={handleSubmit} />
+      <NoteEditor note={NotePlaceholder} updateNote={handleSubmit} />
     </Box>
   );
 };
