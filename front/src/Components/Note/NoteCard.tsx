@@ -200,7 +200,7 @@ const NoteCard = ({ note }: { note: Note }) => {
             overflowY: 'auto',
           }}
         >
-          <NoteEditor note={currentNote} updateNote={handleSaveNote} />
+          <NoteEditor note={currentNote} updateNote={handleSaveNote} toggleCheck={toggleCheck} />
         </Box>
       </Modal>
     </>
